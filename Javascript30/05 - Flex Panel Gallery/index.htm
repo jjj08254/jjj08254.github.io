@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Flex Panels 💪</title>
+  <link href='https://fonts.googleapis.com/css?family=Amatic+SC' rel='stylesheet' type='text/css'>
+</head>
+<body>
+  <style>
+    html {
+      box-sizing: border-box;
+      background: #ffc600;
+      font-family: 'helvetica neue';
+      font-size: 20px;
+      font-weight: bold;
+    }
+    
+    body {
+      margin: 0;
+    }
+    
+    *, *::before, *::after {
+      box-sizing: inherit; /* use the property from its parent element */
+    }
+
+    .panels {
+      min-height: 100vh;
+      overflow: hidden;
+      display: flex;
+    }
+
+    .panel {
+      background: #6B0F9C;
+      box-shadow: inset 0 0 0 5px rgba(255,255,255,0.1);
+      color: white;
+      text-align: center;
+      align-items: center;
+      /* Safari transitionend event.propertyName === flex */
+      /* Chrome + FF transitionend event.propertyName === flex-grow */
+      transition:
+        font-size 0.7s cubic-bezier(0.61,-0.19, 0.7,-0.11),
+        flex 0.7s cubic-bezier(0.61,-0.19, 0.7,-0.11),
+        background 0.2s;
+      font-size: 20px;
+      background-size: cover;
+      background-position: center;
+      flex: 1; /* evenly distribute to extra space */ 
+      justify-content: center;
+      align-items: center;
+      display: flex; /* panel is flex container and also flex item */
+      flex-direction: column; /*default is left to right*/
+    }
+
+    .panel1 { background-image:url(jo1.jpg); }
+    .panel2 { background-image:url(dad.jpg); }
+    .panel3 { background-image:url(mini.jpg); }
+    .panel4 { background-image:url(mom.jpg); }
+    .panel5 { background-image:url(jo2.jpg); }
+
+    /* Flex Item */
+    .panel > * {
+      margin: 0;
+      width: 100%;
+      transition: transform 0.5s;
+      flex: auto; /* auto/initial/none */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .panel > *:first-child{ transform: translateY(-100%); }
+    .panel.open-active > *:first-child{ transform: translateY(0); }
+    .panel > *:last-child{ transform: translateY(100%); }
+    .panel.open-active > *:last-child{ transform: translateY(0); }
+
+    .panel p {
+      text-transform: uppercase;
+      font-family: 'Amatic SC', cursive;
+      text-shadow: 0 0 4px rgba(0, 0, 0, 0.72), 0 0 14px rgba(0, 0, 0, 0.45);
+      font-size: 2em;
+    }
+    
+    .panel p:nth-child(2) {
+      font-size: 4em;
+    }
+
+    .panel.open {
+      font-size: 40px;
+      flex: 5; /* 5 times the amount of extra room as the rest of the flex of 1 */
+    }
+
+  </style>
+
+
+  <div class="panels">
+    <div class="panel panel1">
+      <p>Here</p>
+      <p>We</p>
+      <p>Are</p>
+    </div>
+    <div class="panel panel2">
+      <p>You</p>
+      <p>Want</p>
+      <p>It</p>
+    </div>
+    <div class="panel panel3">
+      <p>Up</p>
+      <p>To</p>
+      <p>Date</p>
+    </div>
+    <div class="panel panel4">
+      <p>Don't</p>
+      <p>Go</p>
+      <p>Anywhere</p>
+    </div>
+    <div class="panel panel5">
+      <p>Sweet</p>
+      <p>Home</p>
+      <p>Here</p>
+    </div>
+  </div>
+
+  <script>
+    var panels = document.querySelectorAll('.panel');
+      //querySelectorAll returns "NodeList"
+      //querySelector returns "Element"
+
+    function toggleOpen(){
+      this.classList.toggle('open');
+    }
+
+    function toggleActive(e){
+      console.log(e.propertyName);
+      if(e.propertyName.includes('flex')){
+        this.classList.toggle('open-active')
+      };
+    }
+    
+    panels.forEach(panel => panel.addEventListener('click', toggleOpen));
+    panels.forEach(panel => panel.addEventListener('transitionend', toggleActive));
+  </script>
+
+
+
+</body>
+</html>

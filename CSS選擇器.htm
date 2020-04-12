@@ -1,0 +1,70 @@
+<!DOC TYPE html>
+<html>
+<head>
+	<meta charset="utf-8"></meta>
+	<title>CSS選擇器</title>
+	<style type="text/css">
+	/* 標籤名稱選擇器 */
+	body{
+		font-size:16px;font-family:"微軟正黑體"
+	}
+	h2{
+		font-size:28px;text-decoration:underline;
+	}
+	
+	/* class 選擇器 */
+	div.content{
+		padding:10px;border:1px dashed #888888;
+	}
+	
+	/* id 選擇器 */
+	#btn{
+		border:1px solid #888888;
+		background-color:#ffffff; padding:5px;
+	}
+	
+	/* 虛擬選擇器:搭配其他選擇器使用 */
+		/* :hover 虛擬選擇器(滑鼠移到目標上時，套用一組設定) */
+		#btn:hover{
+			background-color:#888888;		
+		}
+		/* :focus 虛擬選擇器(當目標取得焦點時，套用一組設定) */
+		input:focus{
+			border:2px solid #ff0000;
+		}
+		
+	/* 階層式選擇器:搭配其他選擇器使用 */
+	.favorite a{
+		color:#ooooff;
+	}
+	.tool a{
+		color:#008800
+	}
+	</style>
+</head>
+
+<body>
+	<h2>我的自我介紹</h2>
+	<div class="content">
+		大家好，我是啾啾
+	</div>
+	
+	<h2>MY FAVORITE</h2>
+	<ul class="favorite">
+		<li><a href="https://www.google.com/">Google</a></li>
+		<li><a href="https://www.facebook.com/">Facebook</a></li>
+	</ul>
+	
+	<h2>我的工具</h2>
+	<ul class="tool">
+		<li><a href="https://www.usna.edu/blackboard/"> USNA BB </a></li>
+		<li><a href="https://mail.google.com/">Gmail</a></li>
+	</ul>
+	
+	<h2>Contact Me</h2>
+	<div class="content">
+		填寫訊息 <input type="text"/><button id="btn">送出</button>
+	</div>
+	
+</body>
+</html>

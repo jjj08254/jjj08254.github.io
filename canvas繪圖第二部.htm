@@ -1,0 +1,46 @@
+<head>
+	<meta charset="utf-8"></meta>
+	<title>Canvas繪圖第二步</title>
+	<script type="text/javascript">	
+	/* 這跟下面相同但較常用
+	window.addEventListener('DOMContentLoaded', function () {
+	})
+	*/
+	var cvs;
+	var ctx;
+	window.onload=function(){
+		cvs=document.getElementById('cvs');
+		ctx=cvs.getContext('2d');
+		// 載入影像
+		var img=new Image();
+		img.src='I suck!.jpg';
+		img.onload=function(){//註冊load事件，圖片載入玩才做繪製
+			ctx.drawImage(this, 0, 0,cvs.width,cvs.height);
+				//把img放進ctx
+		}
+
+	var color = document.getElementById('color');
+	var change = function() {
+		var pixels=ctx.getImageData(0,0,cvs.width,cvs.height);
+			//ImageData 物件
+		var data=pixels.data; //一個像素佔據4個bytes (r,g,b,transparent) (範圍0~255)
+		for(var i=0;i<data.length;i+=4){ //以一個像素為單位所以+4
+			data[i]=255-data[i]; //red
+			data[i+1]=255-data[i+1]; //green
+			data[i+2]=255-data[i+2]; //blue
+		};
+		ctx.putImageData(pixels,0,0);
+	};
+	color.addEventListener('click', change);
+	};
+
+	</script>
+	<style type="text/css">
+
+	</style>
+</head>
+<body>
+	<div><button id="color">顏色的反轉</button></div>
+	<canvas id="cvs" widh="500" height="400" style="border:1px solid #000000"></canvas>
+</body>
+</html>

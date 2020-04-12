@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name='viewport' content="width=device-width initial-scale=1 maximum-scale=1" />
+        <title>SVG 使用JS建立向量圖</title>
+        <script type="text/javascript">
+        window.onload=function(){
+            svg = document.getElementById('svg');
+
+            //<line></line>
+            var line = document.createElementNS('http://www.w3.org/2000/svg','line');
+                // 建立標籤 (svg要加'NS')
+                // 前綴要加http!!
+            line.setAttribute('x1',50); //<line x1='50'></line>
+            line.setAttribute('y1',50); //<line x1='50' y1='50'></line>
+            line.setAttribute('x2',350);
+            line.setAttribute('y2',350);
+            line.setAttribute('stroke','red');
+            line.setAttribute('stroke-weight',2);
+            svg.appendChild(line); //把做好的東西放進svg裡面
+            
+
+            //<circle></circle>
+            var circle = document.createElementNS('http://www.w3.org/2000/svg','circle');
+            circle.setAttribute('cx',200);
+            circle.setAttribute('cy',50);
+            circle.setAttribute('r',50);
+            circle.setAttribute('fill','#ffcc00');
+            svg.appendChild(circle);
+
+            //<rect></rect>
+            var rect = createSvgElement('rect',{
+                'x':150, "y":100,
+                'width':100, 'height':100,
+                'fill':'blue',
+            });
+            svg.appendChild(rect);
+
+            //<text></text>
+            var text = createSvgElement('text',{
+                'x':100, 'y':350,
+                'fill':'green', 'font-size':45,
+                'font-weight':'bold',
+            });
+            text.textContent='Hello CVS'; //textContent:文字內容
+            svg.appendChild(text);
+        }
+
+        //產生比較方便的寫法
+        function createSvgElement(tagName, attrs){
+            var element = document.createElementNS('http://www.w3.org/2000/svg',tagName);
+            for(var name in attrs){
+                element.setAttribute(name, attrs[name])
+            };
+            return element;
+        }
+
+        </script>
+    </head>
+    <body>
+        <svg id='svg' width='640' height='480' style='border:1px solid #000000'>
+<!--
+            <line x1='50' y1='50' x2='350' y2='250' stroke='red' sroke-weight='2'></line>
+            <circle cx='200' cy='50' r='50' fill='#ffcc00'></circle>
+            <rect x='150' y='100' width='100' height='100' fill='gray' stroke='orange'></rect>
+            <polygon points="150,200,250,200,200,300" fill='gray'></polygon>
+            <text x='100' y='350' fill='green' font-size='45' font-weight='bold'>Hello SVG</text>
+-->   
+        </svg>
+    </body>
+</html>

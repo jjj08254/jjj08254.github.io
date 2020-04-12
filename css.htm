@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"></meta>
+	<title>CSS Tutorial</title>
+	
+	<style type="text/css">
+	.title{font-weight:bold;font-size:30px}
+	.content{width:500px;padding:10px;
+		/* border邊界: (線大小,實、虛線,顏色) */
+		border:1px dashed blue;
+		margin-top:10px; margin-bottom:10px;
+	}
+	.用這個{color:red}
+	.box{
+		position:absolute;right:0px;top:0px;
+		height:100px;width:100px;background-color:green
+	}
+	.bbox{
+		position:relative;left:100px;top:10px;
+		height:100px;width:100px;background-color:green
+	}
+	</style>
+	
+</head>
+<body style="margin:0px">
+	<div class="title">The weather today is nice</div>
+	<div class="content">
+		我去公園散步，做<span class="用這個">白日夢</span>。 <br>
+		覺得我未來一片光明
+	</div>
+	
+	<div class="box"></div>
+	<div class="bbox"></div>
+	
+	
+	<div style="font-weight:bold;font-size:20px">I don't feel like going anywhere</div>
+	<div style="width:200px;padding:10px;border:1px dashed blue; margin-top:10px;margin-bottom:10px">
+		我還是只想躺在床上。
+	</div>
+	<div class="content">
+		這個和上面那個是<span class="用這個">相同的格式</span>但比較簡單。<br>
+		相對位移的例子，我辛<span style="position:relative;top:-8px;font-size:12px">2</span>苦苦2。
+	</div>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"></meta>
+	<title>自動排呈 Schedule</title>
+	<script type="text/javascript">
+	var timer
+	function init(){
+		timer = document.getElementById('timer');
+		//window.setTimeout(countdown, 1000); // 1000ms後做countdown
+		window.setInterval(countdown, 1000); // 每1000ms做一次countdown
+	}
+	function countdown(){
+		timer.innerHTML = timer.innerHTML -1;
+		if(timer.innerHTML>0){ //還沒倒數到0
+			//window.setTimeout(countdown, 1000);
+		}else{ //倒數到0，做接下來工作
+			document.location="https://google.com/";
+		}
+	}
+	</script>
+</head>
+<body onload="init();"> 
+	<span id='timer'>3</span>
+
+</body>
+</html>

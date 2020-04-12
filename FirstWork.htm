@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"></meta>
+	<title>我的網站</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+	<link href="個人網站.css" rel="stylesheet" type="text/css" media="all" />
+	<script type="text/javascript">
+	function change(name){
+		var Name = window.document.getElementById(name);
+		var inner = Name.innerHTML;
+		if(Name==phone){
+			if(inner=='電話'){
+				Name.innerHTML="443-559-7729";
+				Name.style.color='red';
+			}else{
+				Name.innerHTML="電話";
+				Name.style.color='black';
+			}
+		}else if(Name==line){
+			if(inner=='Line'){
+				Name.innerHTML="jjj08254";
+				Name.style.color='red';
+			}else{
+				Name.innerHTML="Line";
+				Name.style.color='black';
+			}
+		}else if(Name==ig){
+			if(inner=='IG'){
+				Name.innerHTML="ping_yuan_";
+				Name.style.color='red';
+			}else{
+				Name.innerHTML="IG";
+				Name.style.color='black';
+			}
+		}
+	}
+	</script>
+</head>
+
+<body>
+	<div class="title">
+		Jack Huang 自我介紹
+	</div>
+	
+	<div class="content">
+		<div class="section">
+			<div class="bold">基本資料</div>
+			<div>我是男生</div>
+			<div>我在美國念書</div>
+			<div>我現在是單身喔喔</div>
+		</div>
+		
+		<div class='section'>
+			<div class="bold">我的興趣</div>
+			<div>睡覺</div>
+			<div>游泳</div>
+		</div>
+		
+		<div class='section'>
+			<div class="bold">與我聯絡</div>
+			<div onclick="change('phone')" id='phone'>電話</div>
+			<div onclick="change('line')" id="line">Line</div>
+			<div onclick="change('ig')" id="ig">IG</div>
+		</div>
+	</div>
+</body>
+
+
+</html>

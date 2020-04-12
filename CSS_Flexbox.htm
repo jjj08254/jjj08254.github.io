@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"></meta>
+	<title>CSS3 Flexbox</title>
+	<link href="flexboxstyle.css" rel="stylesheet" type="text/css" media="all" />
+</head>
+<body>
+	<nav>
+		<div class="logo">Logo</div>
+		<div class="menu">Menu</div>
+		<div class="user">User</div>
+	</nav>	
+	<!-- 
+		Flex 如何解決:並排(切欄)、水平對齊、垂直對齊的問題 
+		(在容器)display:flex ; justify-content:center ; align-items:center
+		(在項目)flex:none/auto
+	-->
+	
+	<!--
+		RWD 回應式設計的關鍵動作:欄位變化
+			Flex 如何控制欄位的變化?
+			例如: 4 欄 > 2 欄 > 1 欄
+			
+		規劃:
+			1200px 以上的規劃:4欄，固定尺寸
+			500~1200px 之間的規劃:2欄，彈性尺寸
+			500px 以下:1欄，彈性尺寸
+	-->
+	<main>
+		<div class="item">News 1<br/>Nice guy I am</div>
+		<div class="item">News 2</div>
+		<div class="item">News 3</div>
+		<div class="item">News 4</div>
+	</main>
+</body>
+</html>

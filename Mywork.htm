@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>MyWork</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+	<script type="text/javascript">
+		function gotcha(webname){
+			var req= new XMLHttpRequest();
+			req.open("get","http://www.jojojack.tk/"+webname);
+			req.onload=function(){
+				var content=document.getElementById('content');
+				content.innerHTML=this.responseText;
+			};
+			req.send();
+		}
+	</script>
+	<style type="text/css">
+		body{}
+		span{
+			cursor:pointer; text-decoration:underline; 
+			margin-right:10px
+		}
+		span:hover{
+			color:red;
+		}
+	</style>
+</head>
+
+<body onload="gotcha('Homepage.htm')")>
+	<div class="tab">
+	    <span onclick="gotcha('Homepage.htm')">Homepage</span>
+		<span onclick="gotcha('htmlDOM.htm')">htmlDOM</span>
+		<span onclick="gotcha('css_practice.htm')">css practice</span>
+		<span onclick="gotcha('css.htm')">css</span>
+		<span onclick="gotcha('CSS_Flexbox.htm')">CSS Flexbox</span>
+		<span onclick="gotcha('CSS表格樣式.htm')">CSS表格樣式</span>
+		<span onclick="gotcha('CSS選擇器.htm')">CSS選擇器</span>
+		<span><a href="http://www.jojojack.tk/Ajax標籤選單.htm">Ajax 標籤選單</a></span>
+		<span><a href="/FirstWork.htm">Firstwork</a></span>
+		<span><a href="http://www.jojojack.tk">Frontpage</a></span>
+		<span><a href="/canvasdraw.htm">Canvas繪圖</a></span>
+		<span><a href="/Movie.htm">影片喔喔</a></span>
+		<span><a href='/SVGPractice.htm'>我要回家啦!!!</a></span>
+		<span><a href='/formandvalidate.htm'>表單設計與驗證</a></span>
+		<span><a href='/Javascript30/Day1/index.htm'>Js Day1 Drum</a></span>
+		<span><a href='/Javascript30/Day2/index.htm'>Js Day2 Clock</a></span>
+		<span><a href='/Javascript30/Day3/index.htm'>Js Day3 Bro!</a></span>
+		<span><a href='/Javascript30/Day5/index.htm'>Js Day5 Gallery</a></span>
+	</div>
+	<hr/>
+	<div id="content"></div>
+</body>
+
+</html>

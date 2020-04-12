@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name='viewport' content="width=device-width initial-scale=1 maximum-scale=1" />
+        <title>Video Player</title>
+        <script type="text/javascript">
+        var video
+        window.onload=function(){
+            video = document.getElementById('video');
+            video.addEventListener("timeupdate",updateTimer);
+                //Event timeupdate:一旦時間有變化會觸發
+            video.addEventListener('ended',function(){
+                alert('Ended');
+            }); //Event ended:影片結束後觸發
+        }
+        function updateTimer(){
+            var timer=document.getElementById('timer');
+            timer.innerHTML=video.currentTime+'/'+video.duration;
+                //currentTime:當下時刻 duration:時間總長度
+        }
+        function playVideo(){
+            video.play(); //play播放
+            video.playbackRate=2; //快轉
+        }
+        function pauseVideo(){
+            video.pause(); //pause暫停
+        }
+        function replayVideo(){
+            video.currentTime = 0;
+            video.play();
+        }
+        </script>
+
+        <style type="text/css">
+        @media(max-width: 1000px){
+            video{width:80%;height: auto;}
+        }
+        </style>
+    </head>
+    <body>
+        <video id="video" src="Self.mp4" width="1000px" height="auto" controls autoplay></video>
+            <!--
+                controls: 調整成可撥放
+                autoplay: 自動撥放
+            -->
+        <div>
+            <button onclick="playVideo();">Play 2x speed</button> 
+            <button onclick="pauseVideo()">Pause</button>
+            <button onclick="replayVideo()">Replay</button>
+
+            <!--建立進度條-->
+            <span id="timer"></span>
+        </div>
+    </body>
+</html>

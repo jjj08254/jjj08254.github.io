@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"></meta>
+	<title>Javascript教學大綱</title>
+	<script type="text/javascript">
+	// 函式基礎教學
+		//內建函式	
+			//alert('hello world');
+		//函式基礎
+		//設計階段
+			/*
+			function add(n1,n2){
+				//函式的本體
+				alert(n1+n2);
+				return n1+n2;
+			}
+		//呼叫
+			var result=add(2,5)*add(3,4);
+			alert(result);
+			*/
+		//整合範例
+			/*
+			function getsum(max){
+				var sum=0;
+				var n=0;
+				while(n<=max){
+				sum+=n;  //sum=sum+n;
+				n++;     //n=n+1;
+				}
+				alert(sum);
+				return sum;
+			}
+			var result=getsum(50)*getsum(100);
+			alert(result);
+			*/
+			
+	//函式變化教學
+		//函式的變形，函式是一種資料
+			/*
+			基礎
+			function func1(n1,n2){
+				alert(n1+n2);
+			}
+			變形
+			var func1=function(n1,n2){
+				alert(n1+n2);
+			}
+			func1(31,15);
+			var test=func1;
+			test(31,14);
+			*/
+		//函式創造新的名稱空間
+			/*
+			var x=3; //全域空間，全域變數
+			function test(){
+				 var y=5;	//區域空間，區域變數
+				 var x=1;
+				 alert(x+y);
+			}
+			test();
+			//外部的程式碼不能使用內部的變數
+			*/
+			
+	//物件教學
+		//建立空白物件
+			/*
+			var point=new Object();
+		//建立物件的成員 (屬性與方法)
+			point.x=3; //屬性
+			point.y=4;
+			point.getPosition=function(){ //方法
+				alert(this.x+","+this.y);
+			}
+		//使用物件
+			alert(point.x);
+			point.getPosition();
+			*/
+		//綜合範例:遊戲中的玩家設定
+			/*
+			var player=new Object();
+			player.name="Jack";
+			player.hp=100;
+			player.fight=function(){
+				this.hp=this.hp-2;
+			};
+			player.rest=function(){
+				this.hp++;
+			};
+			player.report=function(){
+				alert(this.name+':'+this.hp);
+			};
+			player.fight();
+			player.rest();
+			player.report();
+			*/
+			
+			function Player(name,hp){ //建構物件的函示
+				// this 代表建立的空白物件
+				this.name=name;
+				this.hp=hp;
+				this.fight=function(){
+					this.hp=this.hp-2;
+				};
+				this.rest=function(){
+					this.hp++;
+				};
+				this.report=function(){
+					alert(this.name+':'+this.hp);
+				};
+			}
+			var player=new Player("Jack",100);
+			player.report();
+			var player2=new Player("jj",5);
+			player2.report();
+	</script>
+</head>
+<body>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"></meta>
+	<title></title>
+	<script type="text/javascript">
+/*
+	function over(element){
+		element.style.color="red";
+	}
+	function out(element){
+		element.style.color="black";
+	}
+*/
+	
+	//用javascript的程式，動態的註冊事件處理器
+	function init(){
+		var btn=document.getElementById("btn");
+		/*
+		btn.onclick=function(){  
+			alert('Clicked');
+		};
+		*/
+		var handler=function(){ //準備一個事件處理器(對應事件的函示)
+			alert('clicked');
+			
+		};
+		btn.addEventListener('click' /*事件的名稱*/, handler);
+	}
+	</script>
+	<style type="text/css">
+	
+	</style>
+</head>
+<body onload="init()"> <!--onload:偵測body標籤裡完全載入成功-->
+<!--
+	<span onmouseover="over(this)"
+		onmouseout="out(this)">Test</span> --this代表span標籤--
+	<div onmouseover="over(this)"
+		onmouseout="out(this)">Line2</div> --this代表div標籤--
+-->
+	
+	<button id="btn">Click</button>
+
+		
+</body>
+</html>

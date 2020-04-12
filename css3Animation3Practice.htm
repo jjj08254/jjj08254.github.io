@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset='utf-8' />
+        <title>CSS 3 完成動畫特效</title>
+        <script type="text/javascript">
+            window.onload = function(){
+                var box = document.getElementById('box');
+
+                var show = function(){
+                    var styles = window.getComputedStyle(box);
+                    var size = styles.getPropertyValue('width');
+                    size = parseInt(size);
+                    var animeID = window.setInterval(function(){
+                        size++;
+                        box.style.width = size+'px';
+                        box.style.height = size+'px';
+                        
+                        box.addEventListener('mouseout', function(){
+                            this.style.width = 50+"px";
+                            this.style.height = 50+"px";
+                            window.clearInterval(animeID);
+                        });
+
+                        if(size>=200){
+                            window.clearInterval(animeID);
+                        }
+                    }, 4);
+                }
+
+                box.addEventListener('mouseover', show);
+            }
+        </script>
+
+        <style type="text/css">
+        .box{
+            width: 50px; height: 50px; background-color: red;
+            position: fixed; top: 0px; right: 0px;
+        }
+        </style>
+    </head>
+    <body>
+        <div class="box" id="box"></div>
+    </body>
+</html>

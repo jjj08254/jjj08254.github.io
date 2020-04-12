@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name='viewport' content="width=device-width initial-scale=1 maximum-scale=1" />
+        <title>SVG向量圖向 基礎教學</title>
+        <script type="text/javascript">
+            window.onload = function(){
+                var svg = document.getElementById('svg');
+                svg.addEventListener('mousedown',mousedownSVG); //偵測使用者點擊畫面
+            };
+
+            function mousedownSVG(e){
+                var x = e.clientX; //取得點擊x座標
+                var y = e.clientY;
+                var bounding = this.getBoundingClientRect();
+                x = x-bounding.left;
+                y = y-bounding.top;
+
+                var line = createSvgElement('line',{
+                    'x1':x, 'y1':y, 'x2':x, 'y2':y,
+                    'stroke':'red', 'stroke-width':2,
+                });
+                this.appendChild(line);
+                //滑鼠移動時
+                var drag = function(e){
+                    //調整線段終點位置
+                    line.setAttribute('x2',e.clientX-bounding.left);
+                    line.setAttribute('y2',e.clientY-bounding.top);
+                };
+                //滑鼠放開時
+                var drop = function(){
+                    document.removeEventListener('mousemove',drag);
+                    document.removeEventListener('mouseup',drop);
+                };
+                document.addEventListener('mousemove',drag);
+                document.addEventListener('mouseup',drop);
+            }
+
+/*
+            function mousedownSVG(e){
+                var x = e.clientX; //取得點擊x座標
+                var y = e.clientY;
+                var bounding = this.getBoundingClientRect();
+                    //取得svg座標資訊
+                    
+                //我們想要相對於svg的座標位置而不是視窗最左上
+                x = x-bounding.left;
+                y = y-bounding.top;
+                
+                 //加入一個方形
+                var rect = createSvgElement("rect",{
+                    "x":x, 'y':y, 'width':100, 'height':100,
+                    'fill':'black',
+                });
+                this.appendChild(rect);
+            }
+*/
+            function createSvgElement(tagName,attrs){
+                var element = document.createElementNS('http://www.w3.org/2000/svg',tagName)
+                for(var name in attrs){
+                    element.setAttribute(name,attrs[name]);
+                };
+                return element;
+            }
+        </script>
+    </head>
+    <body>
+        <svg id='svg' width='640' height='480' style='border:1px solid #000000'>
+<!--            
+            <line x1='50' y1='50' x2='350' y2='250' stroke='red' sroke-weight='2'></line>
+            <circle cx='200' cy='50' r='50' fill='#ffcc00'></circle>
+            <rect x='150' y='100' width='100' height='100' fill='gray' stroke='orange'></rect>
+            <polygon points="150,200,250,200,200,300" fill='gray'></polygon>
+                 point(x1,y1,x2,y2,x3,y3.....)
+            <text x='100' y='350' fill='green' font-size='45' font-weight='bold'>Hello SVG</text>
+-->            
+        </svg>
+    </body>
+</html>

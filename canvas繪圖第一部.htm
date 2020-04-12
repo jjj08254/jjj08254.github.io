@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"></meta>
+	<meta name="viewport" content="width=device-width, initial scale=1, maximum-scale=1" />
+	<title>Canvas繪圖第一步</title>
+	<script type="text/javascript">
+		window.onload=function(){
+			var cvs=document.getElementById('cvs');
+			var ctx=cvs.getContext('2d'); //getContext:取得context(webgl是3D)
+			// Fill 填滿
+			ctx.fillStyle="red"; //fillStyle: color
+			ctx.globalAlpha=0.3; //globalAlpha: transparent
+			ctx.fillRect(50, 50, 100, 100);
+				 //fillRect(x座標,y座標,x尺寸,y尺寸)
+			
+			// Stroke 描繪
+			ctx.globalAlpha=1;
+			ctx.strokeStyle="blue";
+			ctx.strokeRect(200,200,50,50);
+			
+			// Path 路徑
+			ctx.beginPath(); //開始建立路徑
+			ctx.moveTo(200,100); //移動當前所在的位置(200,100)
+			ctx.lineTo(300,300); //拉線到(300,300)
+			ctx.closePath(); //結束
+			ctx.stroke(); //呼叫路線 也可用ctx.fill();
+			
+			ctx.beginPath();
+			ctx.moveTo(300,300);
+			ctx.lineTo(400,350);
+			ctx.lineTo(250,400);
+			ctx.closePath();
+			ctx.fill();
+		};
+	</script>
+	<style type="text/css">
+	
+	</style>
+</head>
+<body>
+<canvas id="cvs" width="500" height="400" style="border:1px solid #000000"></canvas>
+</body>
+</html>

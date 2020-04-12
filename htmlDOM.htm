@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"></meta>
+	<title>HTML DOM</title>
+	<script type="text/javascript">
+	/* LESSION 1
+	
+		// alert(window.screen.width+'+'+window.screen.height);
+		function change(){
+			var spanObj=window.document.getElementById('emotion');
+			spanObj.innerHTML="bad";
+			spanObj.style.color="red";
+			spanObj.style.fontWeight="bold"; //(css)font-weight --> (jc)fontWeight
+			//spanObj.style.display="none"
+		}
+		
+	*/
+	
+	
+	// Lession 2
+		function toggleMenu(number){
+			var menu=document.getElementById('Menu'+number);
+			menu.classList.toggle('hide'); //toggle可以'切換'提供的class名稱
+			/*
+			if(menu.style.display=="none"){
+				menu.style.display="block";
+			}else{
+				menu.style.display="none";
+			}
+			*/
+		}
+		</script>
+		
+		<style type="text/css">
+			.hide{display:none;}
+		</style>
+</head>
+<body>
+<!-- LESSION 1
+
+	<div>
+		Today is a <span id="emotion">good</span> day. Let's go to movie.
+	</div>
+	<button onclick="change()">Change</button>
+	
+-->
+	<div onclick="toggleMenu(1);">選單的標題1</div>
+	<ul id="Menu1">
+		<li><marquee scrollamount="23">選項 1-1</marquee></li> <!-- marquee:跑馬燈 scrollamount="1000" direction="up"-->
+		<li><marquee scrollamount="20">選項 1-2</marquee></li>
+		<li><marquee scrollamount="30">選項 1-3</marquee></li>
+	</ul>
+	
+	<div onclick="toggleMenu(2);">選單的標題2</div>
+	<ul id="Menu2">
+		<li><marquee scrollamount="26">選項 2-1</marquee></li>
+		<li><marquee scrollamount="15">選項 2-2</marquee></li>
+		<li><marquee scrollamount="25">選項 2-3</marquee></li>
+	</ul>
+	
+	<div onclick="toggleMenu(3);">選單的標題3</div>
+	<ul id="Menu3">
+		<li><marquee scrollamount="17">選項 3-1</marquee></li>
+		<li><marquee scrollamount="28">選項 2-2</marquee></li>
+	</ul>
+</body>
+
+</html>

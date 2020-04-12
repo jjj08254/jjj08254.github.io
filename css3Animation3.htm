@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset='utf-8' />
+        <title>CSS 3 完成動畫特效</title>
+        <script type="text/javascript">
+            window.onload = function(){
+                var box = document.getElementById('box');
+                box.addEventListener('mouseout', function(){
+                    this.style.width = 50+"px";
+                    this.style.height = 50+"px";
+                });
+            }
+            function show(){
+                box = document.getElementById('box');
+                var boxstyles = window.getComputedStyle(box); 
+                 //  取得box所有style的資料
+                var boxsize = boxstyles.getPropertyValue('width');
+                 // 取得特定的資料
+                 // return 寬度 (50px in this case)
+                boxsize=parseInt(boxsize); 
+                 // 把"50px"字串 變成 50(數字)
+
+                // 排成
+                var animeID = window.setInterval(function(){
+
+                    //設定停止動畫條件
+                    if(boxsize>=200){
+                        //停止動畫
+                        window.clearInterval(animeID);
+                        return;
+                    };
+                    //先調整數值
+                    boxsize++;
+                    //把數值放進box的css設定中，產生實際效果
+                    box.style.width = boxsize+'px';
+                    box.style.height = boxsize+'px';
+                }, 10); //每0.01秒執行一次我們提供的函式
+            }
+        </script>
+
+        <style type="text/css">
+        .box{
+            width: 50px; height: 50px; background-color: red;
+            position: fixed; top: 0px; right: 0px;
+        }
+        </style>
+    </head>
+    <body>
+        <div class="box" id="box" onclick="show()"></div>
+    </body>
+
+</html>

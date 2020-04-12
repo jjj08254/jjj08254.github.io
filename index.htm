@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"></meta>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+	<title>啾啾的WEBSITE</title>
+	<script type="text/javascript">
+		function init(){
+			var line = document.getElementById('line');
+			var ig = document.getElementById('ig');
+			var phone = document.getElementById('phone');
+			
+			var mapper = {
+			  line: 'jjj08254',
+			  ig: 'ping_yuan_',
+			  phone: '443-550-7729',
+			};
+			
+			
+			var handler = function(key, el, originalVal){
+				var state = false;
+				//return function到handler，使handler的內容變el....
+				return function () {
+					if (state) {
+						el.innerHTML = originalVal
+						el.style.color = 'black';
+					}
+					else {
+						el.innerHTML = mapper[key]; 
+						   //key是字串，從mapper裡面抓出相對應的字串
+						   //mapper.key = mapper['key'];	
+						el.style.color = 'red';
+					}
+					state = !state
+				}
+			};
+	
+			//handler():呼叫這個function(已執行)  handler:指定這個function(未執行)
+			line.addEventListener('click', handler('line', line, line.innerHTML));
+			ig.addEventListener('click', handler('ig', ig, ig.innerHTML));
+			phone.addEventListener('click',handler('phone', phone, phone.innerHTML));			
+		}
+	</script>
+	
+	<style type="text/css">
+	body{margin:0px; background-color:#f2e9e9}
+	h2{background-color:#fcfc05;margin:0px;padding:20px}
+	.title{
+		padding:10px; font-size:40px; color:#212120; background-color:#2887d4;
+		text-align:center; margin:0px; font-weight:bold; 
+	}
+	.content{
+		margin-right:auto; margin-left:auto;
+		display:flex; flex-wrap:wrap;
+		justify-content:center; 
+		align-items:flex-start;
+	}
+	.box{
+		flex:none;
+		width:320px; padding;20px; margin:20px;
+		background-color:#eeffee; text-align:center; 
+		line-height:40px; font-size:20px;
+		padding-bottom:10px;
+	}
+
+	#line:hover{background-color:#ccffcc;font-weight:bold}
+	#line{cursor:pointer;}
+	#ig:hover{background-color:#ccffcc;font-weight:bold}
+	#ig{cursor:pointer;}
+	#phone:hover{background-color:#ccffcc;font-weight:bold}
+	#phone{cursor:pointer;}
+	
+	@media(max-width:1200px){
+		.box{width:40%};
+	}
+	@media(max-width:600px){
+		.box{width:80%}
+		.title{font-size:30px}
+	}
+
+	</style>
+</head>
+<body onload="init()">
+	<div class="title">Welcome to JOJO Website</div>
+	<div class="content menu-items">
+		<div class="box">
+			<h2>Info about ME</h2>
+			<div>From Taiwan</div>
+			<div>Don't speak English</div>
+			<div>Singleeeeeeeee~</div>
+			<div>USNA</div>
+		</div>
+		<div class="box">
+			<h2>Contact ME</h2>
+			<div id="line">Line</div>
+			<div id="ig">IG</div>
+			<div id="phone">Phone</div>
+		</div>
+		<div class="box">
+			<h2>My Work</h2>
+			<div><a href="Mywork.htm">我的作品</a></div>
+		</div>
+	</div>
+</body>
+</html>

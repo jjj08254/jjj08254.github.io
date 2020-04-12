@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>我要回家啦</title>
+        <script type="text/javascript">
+            var svg
+            window.onload = function(){
+                svg = document.getElementById('svg');
+                svg.addEventListener('mousedown',mousedownSVG);
+
+                box = document.getElementById('box');
+                //HTML Element 中的 scrollLeft, scrollTop 屬性
+                window.setInterval(scroll, 10);
+            };
+
+            function mousedownSVG(e){
+                var x = e.clientX;
+                var y = e.clientY;
+                var bounding = this.getBoundingClientRect();
+                x = x-bounding.left;
+                y = y-bounding.top;
+
+                var line = createSVG('line',{
+                    'x1':x, 'y1':y, 'x2':x, 'y2':y,
+                    'stroke':"red", "stroke-weight":2,
+                });
+                this.appendChild(line);
+
+                var drag = function(e){
+                    line.setAttribute('x2', e.clientX-bounding.left);
+                    line.setAttribute('y2', e.clientY-bounding.top);
+                };
+                var drop = function(){
+                    this.removeEventListener('mousemove', drag);
+                    this.removeEventListener('mouseup', drop);
+                };
+
+                this.addEventListener('mousemove', drag);
+                this.addEventListener('mouseup', drop);
+                
+            };
+
+            function createSVG(tagName, attrs){
+                var element = document.createElementNS('http://www.w3.org/2000/svg', tagName);
+                for(var name in attrs){
+                    element.setAttribute(name,attrs[name]);
+                };
+                return element
+            };
+
+            var scroll = function(){
+                    if(box.scrollTop < 340){
+                        box.scrollTop++;
+                    }else{
+                        box.scrollTop=0;
+                    }
+                }
+        </script>
+
+        <style type="text/css">
+            .box{
+                border: 1px solid #000000; width: 200px;
+                /*要產生捲軸，高度要固定 (預設是auto)*/
+                height: 80px;
+                /*當內容超過外部標籤的尺寸 (預設是visible)*/
+                overflow: hidden; /*auto常用*/
+                font-size: 30px; font-weight: bold;
+                text-align: center;
+            }
+            .comma{
+                position: relative; left:7px; top:-3px;
+            }
+            .symbol{
+                position: relative; left:2px
+            }
+        </style>
+    </head>
+    <body style="display: flex;">
+        <svg id="svg" width='500' height='600' style="flex:none; border:1px solid black" ></svg>
+        <div style="margin-left: 10px; font-size: 23px;">
+            <div>請</div>
+            <div>在</div>
+            <div>左</div>
+            <div>側</div>
+            <div>畫</div>
+            <div>線</div>
+        </div>        
+        <div id="box" class="box" style="flex: none; margin-left: 50px;">
+            <div>我</div>
+            <div>要</div>
+            <div>回</div>
+            <div>家</div>
+            <div>啦</div>
+            <div class="comma">，</div>
+            <div>豈</div>
+            <div>可</div>
+            <div>修</div>
+            <div class="symbol">!</div><br/><br/>
+        </div>
+
+    </body>
+</html>

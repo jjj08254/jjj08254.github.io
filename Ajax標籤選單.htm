@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"></meta>
+	<title>Ajax 標籤選單</title>
+	<script type="text/javascript">
+	function getData(pageName){
+		// Ajax:XMLHttpRequest 物件專門用來和伺服器做連線
+		var req = new XMLHttpRequest();
+		req.open('get','http://www.jojojack.tk/'+pageName); //get 取得網路
+		req.onload=function(){ //load事件，偵測連線的狀態結束
+			//連線完成，做連線後的處理
+			var content=document.getElementById('content');
+			content.innerHTML=this.responseText;
+		};
+		req.send(); //送出連線
+	}
+	</script>
+</head>
+<body onload="getData('Homepage.htm')"> 
+	<div>
+		<span onclick="getData('css_practice.htm')">熱門</span>
+		<span onclick="getData('CSS選擇器.htm')">最新</span>
+	</div>
+	<hr/>
+	<div id="content"></div>
+</body>
+</html>

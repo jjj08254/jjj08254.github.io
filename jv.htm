@@ -1,0 +1,68 @@
+<!DOCTYPE htme>
+<html>
+<head>
+	<meta charset="utf-8"></meta>
+	<title>Javascript</title>
+	<script type="text/javascript">
+		// 單行註解
+		/*
+			多行註解
+		*/
+		// 資料
+		15;
+		15.55;
+		'這是字串';
+		true;
+		false;
+		// 變數
+			/* 這是變數的說明
+			var x;
+			x=15;
+			alert(x);
+			x="我是啾啾";
+			alert(x);
+			var y=true;
+			*/
+		// 運算子
+			/*
+			15+20;
+			alert(15+20);
+			var result=15+15;
+			alert(result);
+			result++; //result=result+1
+			alert(result);
+			
+			4>3;
+			result=4>=3;
+			alert(result);
+			var data=3;
+			result=data*data;
+			alert(result);
+			*/
+		// 範例
+		// 輸入:prompt(提示語，預設值) --> 程式運算 --> 輸出:alert(資料)
+		var n1=prompt('請輸入','');
+		var n2=prompt('請輸入','');
+		var op=prompt('輸入+,-,*,/','');
+		var result;
+		n1=Number(n1);
+		n2=Number(n2);
+		if(isNaN(n1)||isNaN(n2)){
+			alert('Please enter numbers');
+		}else if(op=="+"){
+			result=n1+n2;
+		}else if(op=="-"){
+			result=n1-n2;
+		}else if(op=="*"){
+			result=n1*n2;
+		}else if(op=="/"){
+			result=n1/n2;
+		}else{
+			alert('invalid operation');
+		}
+		alert(result);
+	</script>
+</head>
+<body>
+</body>
+</html>

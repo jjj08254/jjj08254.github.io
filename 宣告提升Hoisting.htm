@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"></meta>
+	<title>宣告提升 Hoisting</title>
+	<script type="text/javascript">
+	/*
+	//x=10; //給定初始資料
+	alert(x); //使用變數
+	//var x; //宣告變數 --> js會把var提到最前面
+	var x=10; //宣告變數、同時給定初始資料 --> 只有var x被移到前面
+	*/
+	
+	// 以下可以定義
+	test(); //呼叫函式	
+	function test(){ //宣告函式
+		alert('hello');
+	}
+
+	
+	/*以下不會被定義
+	//var test; 只有test被提升
+	test(); //呼叫函式
+	var test=function(){ //函式的宣告
+		alert('hello');
+	}
+	*/
+	</script>
+</head>
+<body> 
+
+</body>
+</html>

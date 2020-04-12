@@ -1,0 +1,49 @@
+body{margin:0px;}
+
+/* nav 樣式設定 */
+nav{
+	display:flex;
+}
+nav>.logo{
+	flex:none;width:100px;
+	background-color:#ffcccc;
+}
+nav>.menu{
+	flex:auto; /*auto:盡量把容器空間占滿*/
+	background-color:#ccccff;
+}
+nav>.user{
+	flex:none;width:100px;
+	background-color:#ccffcc;
+}
+
+
+/* main 樣式設定 */
+main{ /* 容器 */
+
+	/* 把div放置水平(並排) */  display:flex;  flex-wrap:wrap; /*容器中的項目會換行，關鍵!!!*/
+	/* 水平對齊(專門用來搭配flex) */  justify-content:center; /*flex-start or flex-end or center*/
+	/* 垂直對齊(專門用來搭配flex) */  align-items:flex-start; /*stretch是預設值 or flex-start or center*/
+	background-color:#cccccc;
+	
+}
+main>.item{ /* 項目 */
+
+	/* 項目尺寸的處理方式and解決水平並排 */  flex:none; /*none:沒有彈性，固定尺寸*/
+	width:270px;margin:10px;
+	background-color:#ffcccc;
+	
+}
+/*以上為1200px以上的規劃*/
+@media (max-width:1200px){
+	main>.item{
+		width:45%;
+	}
+}
+/*以上為500~1200之間的規劃*/
+@media (max-width:500px){
+	main>.item{
+		width:90%;
+	}
+}
+/*以上為500以下的規劃*/

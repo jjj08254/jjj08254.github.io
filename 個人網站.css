@@ -1,0 +1,53 @@
+	body{
+		margin:0px; background-color:gray;
+	}
+	.title{
+		background-color:#eeffee; font-size:35px; font-weight:bold;
+		text-align:center;
+		padding:10px; margin:0px;
+	}
+	.content{
+		margin-left:auto;margin-right:auto;
+		
+		/* flex */
+		display:flex; flex-wrap:wrap;
+		justify-content:center;
+		align-items:stretch;		
+		
+	}
+	.section{
+		width:270px; background-color:white;
+		text-align:center; margin:10px;
+		padding:5px; line-height:30px;
+		
+		/* flex */
+		flex:none;
+		
+	}
+	.bold{font-weight:bold;font-size:20px;}
+	
+	#phone{
+		padding=1px;margin:0px;
+	}
+	#phone:hover{
+		background-color:#ccffcc;
+	}
+	
+	#line{
+		padding=1px;
+	}
+	#line:hover{
+		background-color:#ccffcc;
+	}
+	
+	#ig{
+		padding=1px;
+	}
+	#ig:hover{
+		background-color:#ccffcc;
+	}
+	
+
+	@media(max-width:900px){
+		.section{width:80%};
+	}
