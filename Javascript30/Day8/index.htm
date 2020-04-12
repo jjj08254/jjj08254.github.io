@@ -4,17 +4,30 @@
   <meta charset="UTF-8">
   <title>HTML5 Canvas</title>
 </head>
-<body>
-<canvas id="draw" width="800" height="800" style="border: 1px solid green;"></canvas>
+<body style="margin: 0px; padding: 0px;">
+  <span style="margin-left: center;">
+    <label for="butt">butt</label><input type="radio" name="lineCap" value="butt"/>
+    <label for="square">square</label><input type="radio" name="lineCap" value="square"/> 
+    <label for="round">round</label><input type="radio" name="lineCap" value="round"/> 
+  </span>
+
+<canvas id="draw" width="600" height="600" style="box-sizing: border-box; border:solid red;"></canvas>
 <script>
   var canvas = document.querySelector('#draw');
   var ctx = canvas.getContext('2d');
-  canvas.width = innerWidth;
-  canvas.height = innerHeight;
+  canvas.width = innerWidth-5;
+  canvas.height = innerHeight-28;
   ctx.strokeStyle = '#BADASS'; // strokeStyle: color
   ctx.lineJoin = 'round'; 
   ctx.lineCap = 'round'; // start/end of the line
-  ctx.lineWidth = 100;
+  ctx.lineWidth = 50;
+
+// use radio input to change ctx.lineCap
+  var lineCap = document.querySelectorAll('input');
+  var changelineCap = function(e){
+    ctx.lineCap = e.target.value;
+  };
+  lineCap.forEach(input => input.addEventListener('change', changelineCap));
 
   var isDrawing = false; // intend to be ture when cursor is down
   var lastX = 0;
@@ -25,7 +38,7 @@
   function draw(e){
     if(!isDrawing) return; //stop the function from running when they are not mousedown
       // if 'ture', then return ==> isDrawing has to be 'false'
-    console.log(e);
+  
 
     ctx.strokeStyle = `hsl(${hue}, 100%, 50%)`; //hsl color system
       // hsl(color, saturation(how bright it's), lightness(0%:black, 100%:white))
