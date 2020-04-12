@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>HTML5 Canvas</title>
+</head>
+<body>
+<canvas id="draw" width="800" height="800" style="border: 1px solid green;"></canvas>
+<script>
+  var canvas = document.querySelector('#draw');
+  var ctx = canvas.getContext('2d');
+  canvas.width = innerWidth;
+  canvas.height = innerHeight;
+  ctx.strokeStyle = '#BADASS'; // strokeStyle: color
+  ctx.lineJoin = 'round'; 
+  ctx.lineCap = 'round'; // start/end of the line
+  ctx.lineWidth = 100;
+
+  var isDrawing = false; // intend to be ture when cursor is down
+  var lastX = 0;
+  var lastY = 0;
+  var hue = 0; // for color changing
+  var direction = true;
+
+  function draw(e){
+    if(!isDrawing) return; //stop the function from running when they are not mousedown
+      // if 'ture', then return ==> isDrawing has to be 'false'
+    console.log(e);
+
+    ctx.strokeStyle = `hsl(${hue}, 100%, 50%)`; //hsl color system
+      // hsl(color, saturation(how bright it's), lightness(0%:black, 100%:white))
+
+    ctx.beginPath(); // start drawing
+    ctx.moveTo(lastX, lastY);    // start from
+    ctx.lineTo(e.offsetX, e.offsetY); // offset is the actual position relative to canvas
+    ctx.stroke();
+    lastX = e.offsetX; // update the last mouseposition
+    lastY = e.offsetY;
+
+    // Change the color for each mousedown+move event
+    hue++;
+    if(hue >= 360){
+      hue = 0;    
+    }
+
+    if(ctx.lineWidth >= 100 || ctx.lineWidth <= 1){
+      direction = !direction;
+    }
+    if(direction){
+      ctx.lineWidth++;
+    }else{
+      ctx.lineWidth--;
+    }
+
+  }
+
+  canvas.addEventListener('mousedown', function(e){
+    isDrawing = true;
+    [lastX, lastY] = [e.offsetX, e.offsetY];
+  });
+
+
+  canvas.addEventListener('mousemove', draw);
+  canvas.addEventListener('mouseup', () => isDrawing = false);
+  canvas.addEventListener('mouseout', () => isDrawing = false);
+</script>
+
+<style>
+  html, body {
+    margin: 0;
+  }
+</style>
+
+</body>
+</html>
