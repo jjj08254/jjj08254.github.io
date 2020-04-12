@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-  <title>JS Drum Kit</title>
+  <title>JS Day1</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 
   <div class="keys">
-    <div data-key="65" class="key" onclick="clicksound(65)">
+    <div data-key="65" class="key" onclick="clicksound('65')">
       <kbd>A</kbd> <!-- kbd: keyboard input-->
       <span class="sound">clap</span>
     </div>
@@ -109,7 +109,7 @@
       //this: key
   };
 
-  var keys = document.querySelectorAll('.key'); //keys will be a NodeList
+  var keys = document.querySelectorAll('.key'); //keys will be an array
   keys.forEach(key => key.addEventListener('transitionend', removeTransition));
   
 	window.addEventListener('keydown', playsound); 
