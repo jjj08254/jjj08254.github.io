@@ -17,7 +17,7 @@
       margin: 50px auto;
       background: white;
       border-radius: 5px;
-      box-shadow: 10px 10px 0 rgba(0,0,0,0.1);
+      box-shadow: 10px 10px 0 rgba(0, 0, 0, 0.1);
     }
 
     .item {
@@ -34,10 +34,12 @@
       background: #F9F9F9;
       text-decoration: line-through;
     }
+    /* checked for <input>(radio buttons and checkboxes) or <option> */
 
     input[type="checkbox"] {
       margin: 20px;
     }
+    /* only for types that are checkbox */
 
     p {
       margin: 0;
@@ -95,7 +97,35 @@
     </div>
   </div>
 
-<script>
-</script>
+  <script>
+    var checkboxes = document.querySelectorAll('.inbox input[type = "checkbox"]');
+
+    var lastChecked;
+
+    var handleCheck = function(e){
+      // check if they had the shift key 
+      // AND check that they are checking it
+      var inBetween = false;
+      if(e.shiftKey && this.checked){ //this means the box that is checked
+        // loop over every single checkbox
+        checkboxes.forEach(checkbox => {
+          console.log(checkbox);
+          if(checkbox === this || checkbox === lastChecked){
+            inBetween = !inBetween;
+            console.log('start checking them inbetween')
+          }
+
+          if(inBetween){
+            checkbox.checked = true;
+          }
+
+        });
+
+      }
+
+      lastChecked = this;
+    };
+    checkboxes.forEach(checkbox => checkbox.addEventListener('click',handleCheck));
+  </script>
 </body>
 </html>
