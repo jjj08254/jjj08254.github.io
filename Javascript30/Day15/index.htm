@@ -23,6 +23,9 @@
       <input type="text" name="item" placeholder="Item Name" required>
       <input type="submit" value="+ Add Item">
     </form>
+    <button data-button="clearall">Clear All</button>
+    <button data-button="checkall">Check All</button>
+    <button data-button="uncheckall">Uncheck All</button>
   </div>
 
 <script>
@@ -67,6 +70,8 @@
                  // JSON.stringify will go deeper levels to change everything into string
   }
 
+
+// Event Delegation
 function toggleDone(e){
   if(!e.target.matches('input')) return; //skip this unless it's an input
   // element.matches: checks to see if the Element would be selected by the provided selectorString
@@ -81,6 +86,43 @@ addItems.addEventListener('submit', addItem);
 itemsList.addEventListener('click', toggleDone);
 
 populateList(items, itemsList);
+
+
+
+// Button Sections
+const clearall = document.querySelector("[data-button=clearall]");
+const checkall = document.querySelector("[data-button=checkall]");
+const uncheckall = document.querySelector("[data-button=uncheckall]");
+
+
+function clearAll(){
+  localStorage.removeItem('items');
+  items.splice(0,items.length);
+  populateList(items,itemsList);
+}
+
+function checkAll(){
+  items.map(item => {
+    item.done = true;
+  })
+  localStorage.setItem('items', JSON.stringify(items));
+  populateList(items,itemsList);
+}
+
+function uncheckAll(){
+  items.map(item => {
+    item.done = false;
+  })
+  localStorage.setItem('items', JSON.stringify(items));
+  populateList(items,itemsList);
+}
+
+clearall.addEventListener('click',clearAll);
+checkall.addEventListener('click',checkAll);
+uncheckall.addEventListener('click',uncheckAll);
+
+
+
 </script>
 
 
