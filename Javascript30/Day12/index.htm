@@ -7,14 +7,14 @@
 </head>
 <body>
   <h1>What's my domain name???</h1>
-  <input type="text">
+  <h3>Type it out in keyboard</h3>
 <script>
 var pressed = []; // array
-var secretCode = 'jojojack';
+var secretCode = 'jojojack.tk';
 
 window.addEventListener('keydown', (e) => {
-  console.log(pressed);
   pressed.push(e.key); // push the Evalue into pressed var
+  console.log(pressed);
   pressed.splice(-secretCode.length-1, pressed.length-secretCode.length)
     // splice(a,b,string1,string2,...)
     // start at index a, delete b element, insert strings1...
