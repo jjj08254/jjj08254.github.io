@@ -26,9 +26,9 @@
 			使用 JSON.stringify(物件);將物件轉換成JSON格式的字串，但會忽略函式的部分
 			使用 JSON.parse(JSON 格式字串);將字串轉換成物件結構
 	*/
-	var jsonStr=JSON.stringify(point);  //jsonStr是字串不是物件
+	var jsonStr=JSON.stringify(point);  //jsonStr: string
 	console.log(jsonStr);
-	var plainObj=JSON.parse(jsonStr);
+	var plainObj=JSON.parse(jsonStr); //plainObj: object
 	console.log(plainObj);
 	alert(plainObj.x);
 	</script>
