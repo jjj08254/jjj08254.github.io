@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Key Detection</title>
+  <script type="text/javascript" src="https://www.cornify.com/js/cornify.js"></script>
+</head>
+<body>
+  <h1>What's my domain name???</h1>
+  <input type="text">
+<script>
+var pressed = []; // array
+var secretCode = 'jojojack';
+
+window.addEventListener('keydown', (e) => {
+  console.log(pressed);
+  pressed.push(e.key); // push the Evalue into pressed var
+  pressed.splice(-secretCode.length-1, pressed.length-secretCode.length)
+    // splice(a,b,string1,string2,...)
+    // start at index a, delete b element, insert strings1...
+    // if a is negative, means 從後面數來第a個
+  if(pressed.join('').includes(secretCode)){
+      //array.join() => become a string
+      //array.join('') => a string with no ','
+    console.log('DING DING!');
+    cornify_add();
+  }
+})
+</script>
+</body>
+</html>

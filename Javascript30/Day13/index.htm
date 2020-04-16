@@ -43,6 +43,8 @@
   </div>
 
   <script>
+    // Since We don't want to trigger a certain function too many times at the momoent
+    // We'll only run this function once every centain time(milisecond)
     function debounce(func, wait = 20, immediate = true) {
       var timeout;
       return function() {
@@ -57,6 +59,32 @@
         if (callNow) func.apply(context, args);
       };
     }
+
+    var sliderImages = document.querySelectorAll('.slide-in');
+    function checkSlide(e){
+      sliderImages.forEach(sliderImage => {
+
+        //half way through the image
+        var slideInAt = (window.scrollY + window.innerHeight) - sliderImage.height/2;
+            // where we are at the very bottom of our window and then go up to half-height of the image
+            // window.scrollY: tells us how much (px) we are scrolled down in the web-page and it is based on the very top of our browser            
+        console.log(slideInAt);
+
+
+        //bottom of the image
+        var imageBottom = sliderImage.offsetTop + sliderImage.height;
+            //offsetTop: the top of the image is how far from the top of the actual window
+        var isHalfShown = slideInAt > sliderImage.offsetTop;
+        var isNotScrolledPast = window.scrollY < imageBottom;
+        if(isHalfShown && isNotScrolledPast){
+          sliderImage.classList.add('active');
+        }else{
+          sliderImage.classList.remove('active')
+        }
+
+      })
+    }
+    window.addEventListener('scroll', debounce(checkSlide))
 
   </script>
 
@@ -91,6 +119,8 @@
 
     .align-left {
       float: left;
+      /* The float property is used for positioning and formatting content
+       e.g. let an image float left to the text in a container. */
       margin-right: 20px;
     }
 
