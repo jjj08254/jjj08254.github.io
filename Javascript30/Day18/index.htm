@@ -181,7 +181,37 @@
       Video 58
     </li>
   </ul>
+
 <script>
+const timeNodes = document.querySelectorAll('[data-time]');
+  // timeNodes is a nodeList, and we want an array to do map and reduce
+
+const timeArrays = Array.from(timeNodes);
+// const timeArray = [...timeNodes]
+
+const seconds = timeArrays
+    .map(timeArray => timeArray.dataset.time)
+      // get the time value
+    .map(timeCode => {
+      const [mins,secs] = timeCode.split(':').map(str => parseFloat(str));
+        // mins,secs after split are strings
+      return mins*60 + secs;
+    })
+    .reduce((total, vidSeconds) => {
+      return total + vidSeconds
+    },0) // 0 is to initialize total value
+
+let secondsLeft = seconds;
+const hours = Math.floor(secondsLeft / 3600);
+    // Math.floor: take integer part and ignore decimals
+secondsLeft = secondsLeft % 3600; // %: mod
+
+const mins = Math.floor(secondsLeft / 60);
+secondsLeft = secondsLeft % 60;
+
+console.log(hours, mins, secondsLeft)
+
+
 </script>
 </body>
 </html>
