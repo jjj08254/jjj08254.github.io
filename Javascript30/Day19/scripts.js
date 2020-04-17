@@ -50,8 +50,11 @@ function paintToCanvas(e){
         // mess with them
         pixels = func(pixels);
 
+        //pixels = greenScreen(pixels);
         //pixels = redEffect(pixels);
         //pixels = rgbSplit(pixels);
+
+        // execute if it's a rgbSplit function
         if(TF){
             ctx.globalAlpha = 0.4;
         };
