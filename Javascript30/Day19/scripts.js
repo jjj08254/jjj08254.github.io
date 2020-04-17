@@ -3,13 +3,25 @@ const canvas = document.querySelector('.photo');
 const ctx = canvas.getContext('2d');
 const strip = document.querySelector('.strip');
 const snap = document.querySelector('.snap');
+const rgbButton = document.querySelector('[data-button=rgbSplit]');
+const redButton = document.querySelector('[data-button=redEffect]');
+const greenButton = document.querySelector('[data-button=greenScreen]');
+const noneButton = document.querySelector('[data-button=noneEffect]');
 
 function getVideo(){
     navigator.mediaDevices.getUserMedia({video: true, audio: false}) // return a promise
         .then(localMediaStream => {
             console.log(localMediaStream) //localMediaStream will be an object
-            video.src = window.URL.createObjectURL(localMediaStream);
-                // In order for video to work, it needs to be converted into some sort of URL
+
+//  DEPRECIATION : 
+//       The following has been depreceated by major browsers as of Chrome and Firefox.
+//       video.src = window.URL.createObjectURL(localMediaStream);
+//       Please refer to these:
+//       Deprecated  - https://developer.mozilla.org/en-US/docs/Web/API/URL/createObjectURL
+//       Newer Syntax - https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/srcObject
+               
+            video.srcObject = localMediaStream;
+              // In order for video to work, it needs to be converted into some sort of URL
             video.play(); // play the video
         })
         .catch(err => {
@@ -18,29 +30,37 @@ function getVideo(){
         // catch() method returns a Promise and deals with rejected cases only.
 }
 
-function paintToCanvas(){
+function paintToCanvas(e){
     const width = video.videoWidth;
-    const height = video.videoHight;
+    const height = video.videoHeight;
     canvas.width = width;
     canvas.height = height;
 
-    return setInterval(() => {
+    const func = effects[this.dataset.button] || noneEffect
+    let TF = this.dataset.button === 'rgbSplit';
+    clearInterval(interval)
+    interval = setInterval(() => {
         ctx.drawImage(video, 0, 0, width, height);
-            // start from top, left of the canvas and paint the height and width
-          
+        // start from top, left of the canvas and paint the height and width
+        
         // take the pixels out    
-        let pixesls = ctx.getImageData(0, 0, width, height);
+        let pixels = ctx.getImageData(0, 0, width, height);
+        
+        
         // mess with them
-            //pixels = redEffect(pixels);
+        pixels = func(pixels);
 
-            //pixels = rgbSplit(pixels);
-            //ctx.globalAlpha = 0.4;
-
-        pixels = greenScreen(pixels);
+        //pixels = redEffect(pixels);
+        //pixels = rgbSplit(pixels);
+        if(TF){
+            ctx.globalAlpha = 0.4;
+        };
         // put them back
         ctx.putImageData(pixels, 0, 0);
 
     }, 16);
+
+    return interval
 }
 
 function takePhoto(){
@@ -58,8 +78,12 @@ function takePhoto(){
     strip.insertBefore(link, strip.firstChild);
 }
 
+function noneEffect(pixels){
+    return pixels
+}
+
 function redEffect(pixels){
-    for(let i = 0; i < pixels.date.length; i+=4){
+    for(let i = 0; i < pixels.data.length; i+=4){
         pixels.data[i+0] = pixels.data[i+0] + 100; //r
         pixels.data[i+1] = pixels.data[i+1] - 50; //g
         pixels.data[i+2] = pixels.data[i+2] * 0.5; //b
@@ -68,16 +92,16 @@ function redEffect(pixels){
 }
 
 function rgbSplit(pixels){
-    for(let i = 0; i < pixels.date.length; i+=4){
-        pixels.data[i-550] = pixels.data[i+0]; //r
-        pixels.data[i+100] = pixels.data[i+1]; //g
+    for(let i = 0; i < pixels.data.length; i+=4){
+        pixels.data[i-150] = pixels.data[i+0]; //r
+        pixels.data[i+500] = pixels.data[i+1]; //g
         pixels.data[i-550] = pixels.data[i+2]; //b
     }
     return pixels;
 }
 
 function greenScreen(pixels){
-    const levels = {};
+  const levels = {};
 
   document.querySelectorAll('.rgb input').forEach((input) => {
     levels[input.name] = input.value;
@@ -103,8 +127,21 @@ function greenScreen(pixels){
   return pixels;
 }
 
+let interval;
+const effects = {
+    redEffect: redEffect,
+    rgbSplit: rgbSplit,
+    greenScreen: greenScreen,
+    noneEffect: noneEffect
+}
+
 getVideo();
 
 
-video.addEventListener('camplay', paintToCanvas);
+video.addEventListener('canplay', paintToCanvas);
     // once video is played
+
+redButton.addEventListener('click', paintToCanvas);
+rgbButton.addEventListener('click',paintToCanvas);
+greenButton.addEventListener('click',paintToCanvas);
+noneButton.addEventListener('click', paintToCanvas);

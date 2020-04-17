@@ -10,25 +10,30 @@
   <div class="photobooth">
     <div class="controls">
       <button onClick="takePhoto()">Take Photo</button>
+      <button data-button="redEffect" style="position: relative; left:30px;">redEffect</button>
+      <button data-button="rgbSplit" style="position: relative; left:30px;">rgbSplit</button>
+      <button data-button="greenScreen" style="position: relative; left:30px;">greenScreen</button>
+      <button data-button="noneEffect" style="position: relative; left:30px;">noneEffect</button>
       <div class="rgb">
         <label for="rmin">Red Min:</label>
-        <input type="range" min=0 max=255 name="rmin">
+        <input type="range" min=0 max=255 name="rmin" value="40">
         <label for="rmax">Red Max:</label>
         <input type="range" min=0 max=255 name="rmax">
 
         <br>
 
         <label for="gmin">Green Min:</label>
-        <input type="range" min=0 max=255 name="gmin">
+        <input type="range" min=0 max=255 name="gmin" value="40">
         <label for="gmax">Green Max:</label>
         <input type="range" min=0 max=255 name="gmax">
 
         <br>
 
         <label for="bmin">Blue Min:</label>
-        <input type="range" min=0 max=255 name="bmin">
+        <input type="range" min=0 max=255 name="bmin" value="40">
         <label for="bmax">Blue Max:</label>
         <input type="range" min=0 max=255 name="bmax">
+
       </div>
     </div>
 
