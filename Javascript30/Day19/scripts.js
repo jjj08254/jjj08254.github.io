@@ -38,6 +38,7 @@ function paintToCanvas(e){
 
     const func = effects[this.dataset.button] || noneEffect
     let TF = this.dataset.button === 'rgbSplit';
+
     clearInterval(interval)
     interval = setInterval(() => {
         ctx.drawImage(video, 0, 0, width, height);
@@ -45,7 +46,9 @@ function paintToCanvas(e){
         
         // take the pixels out    
         let pixels = ctx.getImageData(0, 0, width, height);
-        
+            // pixels is a special array that has data/height/width/_proto_
+            // pixels.data is the huge array that we want
+            // can find all value in ImageData.data
         
         // mess with them
         pixels = func(pixels);
@@ -56,7 +59,7 @@ function paintToCanvas(e){
 
         // execute if it's a rgbSplit function
         if(TF){
-            ctx.globalAlpha = 0.4;
+            ctx.globalAlpha = 0.1;
         };
         // put them back
         ctx.putImageData(pixels, 0, 0);
@@ -79,6 +82,9 @@ function takePhoto(){
     link.innerHTML = `<img src='${data}' alt='Handsome Man' />`;
     //link.textContent = 'Download Image';
     strip.insertBefore(link, strip.firstChild);
+    // Node.insertBefore() inserts a node before a reference node as a child of a specified parent node.
+    // parentNode.insertBefore(newNode, referenceNode)
+    // Means: under the strip node(div), inserts link node(a) at the firstChild of strip node
 }
 
 function noneEffect(pixels){
@@ -116,6 +122,10 @@ function greenScreen(pixels){
     blue = pixels.data[i + 2];
     alpha = pixels.data[i + 3];
 
+
+    // if red is btwn rmin and rmax
+    // and also if blue is btwn bmin and bmax
+    // and also if green is btwn gmin and gmax
     if (red >= levels.rmin
       && green >= levels.gmin
       && blue >= levels.bmin
