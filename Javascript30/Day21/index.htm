@@ -64,6 +64,7 @@
 
           // watchPosition or getCurrrentPosition
     navigator.geolocation.watchPosition((data) => {
+      console.log(data)
       // data will have coords and timestamp(indication time)
       // coords will have accuracy, altitude, altitudeAccuarcy, heading, latitude, longtitude, speed(km/hr)
       speed.textContent = data.coords.speed;
