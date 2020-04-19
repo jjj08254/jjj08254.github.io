@@ -20,11 +20,18 @@ function timer(timeSelected){
     clearInterval(countdown);
     // clear existing interval
 
+    document.querySelector('audio').currentTime = 0;
+    document.querySelector('audio').pause();
     countdown = setInterval(() => {
         const secondsLeft = Math.round((then - Date.now()) / 1000); // change unit to seconds
         // chech if we should stop it
         if(secondsLeft <= 0) {
             clearInterval(countdown);
+            document.querySelector('audio').play();
+            setTimeout(() => {
+                document.querySelector('audio').currentTime = 0;
+                document.querySelector('audio').pause();
+            }, 5700)
         }
         // display it
         displayTimeLeft(secondsLeft);
