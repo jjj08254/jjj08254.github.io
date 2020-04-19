@@ -8,12 +8,12 @@
 <body>
 
   <header>
-    <h1>A story about getting lost.</h1>
+    <h1>A sad story about JOJO Jack</h1>
   </header>
 
   <nav id="main">
     <ul>
-      <li class="logo"><a href="#">LOST.</a></li>
+      <li class="logo"><a href="#">JOJO.</a></li>
       <li><a href="#">Home</a></li>
       <li><a href="#">About</a></li>
       <li><a href="#">Images</a></li>
@@ -54,7 +54,25 @@
   </div>
 
 <script>
+  const nav = document.querySelector('#main');
+  const header = document.querySelector('header');
+  let topOfNav = nav.offsetTop;
 
+  function fixNav(){
+      //window.scrollY is how far we scroll down
+    if(window.scrollY >= topOfNav){
+      document.body.classList.add('fixed-nav');
+      document.body.style.paddingTop = nav.offsetHeight + 'px';
+      // once the nav position becomes fixed, it's no longer taking up space in document
+      // so we need to add padding to compansate the space
+    }else{
+      document.body.style.paddingTop = 0;
+      document.body.classList.remove('fixed-nav');
+    }
+  }
+
+  window.addEventListener('scroll', fixNav);
+  window.addEventListener('resize', () => topOfNav = header.offsetHeight);
 </script>
 
 </body>

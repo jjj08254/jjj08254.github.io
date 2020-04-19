@@ -8,6 +8,8 @@ var skipButtons = document.querySelectorAll('[data-skip]');
     // [] here represents attribute
 var ranges = document.querySelectorAll('.player__slider');
 
+var fullScreen = document.querySelector('#fullScreen');
+fullScreen.style.flex = 1;
 
 
 /* Build out Functions */
@@ -58,6 +60,17 @@ function scrub(e){
     console.log(e)
 }
 
+function fullscreen(){
+    if(isFullScreen){
+        document.exitFullscreen();
+    }else{
+        player.requestFullscreen();
+    }
+    
+    return isFullScreen = !isFullScreen
+}
+
+
 /* Hook up the event listener */
 video.addEventListener('click',togglePlay);
 video.addEventListener('play',updateButton);
@@ -69,7 +82,7 @@ skipButtons.forEach(button => button.addEventListener('click',skip));
 ranges.forEach(range => range.addEventListener('change',handleRangeUpdate));
 ranges.forEach(range => range.addEventListener('mousemove',handleRangeUpdate));
 
-var mousedown = false;
+const mousedown = false;
 progress.addEventListener('click',scrub);
 
 // progress.addEventListener('mousemove', () => mousedown && scrub(e))
@@ -81,3 +94,6 @@ progress.addEventListener('mousemove', (e) => {
 });
 progress.addEventListener('mousedown', () => mousedown = true);
 progress.addEventListener('mouseup', () => mousedown = false);
+
+let isFullScreen = false;
+fullScreen.addEventListener('click',fullscreen)
