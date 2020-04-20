@@ -67,3 +67,13 @@ h1 {
 .hole.up .mole {
   top: 0;
 }
+
+.records{
+  position: absolute;
+  
+  height: 100px;
+  right: 30px;
+  top: 10px;
+  font-size: 30px;
+
+}
