@@ -17,12 +17,12 @@
       </select>
 
       <label for="rate">Rate:</label>
-      <input name="rate" type="range" min="0" max="3" value="1" step="0.1">
+      <input name="rate" type="range" min="0" max="3" value="1.8" step="0.1">
 
       <label for="pitch">Pitch:</label>
 
       <input name="pitch" type="range" min="0" max="2" value='0.8' step="0.1">
-      <textarea name="text">Chi kur shouChi kur shouChi kur shouChi kur shouChi kur shouChi kur shouChi kur shouChi kur shouChi kur shouChi kur shouChi kur shouChi kur shouChi kur shouChi kur shouChi kur shouChi kur shouChi kur shouChi kur shouChi kur shouChi kur shouChi kur shou</textarea>
+      <textarea name="text">Chi kur shou Chi kur shou Chi kur shou Chi kur shou Chi kur shou Chi kur shou Chi kur shou Chi kur shou Chi kur shou Chi kur shou Chi kur shou Chi kur shou Chi kur shou Chi kur shou Chi kur shou Chi kur shou Chi kur shou </textarea>
       <button id="stop">Stop!</button>
       <button id="speak">Speak</button>
 
@@ -52,7 +52,7 @@
         .map(voice => `<option value='${voice.name}'>${voice.name} (${voice.lang})</option>'`);  
     voicesDropdown.innerHTML = voiceOptions;
 
-
+    msg.rate = 1.8;
     msg.voice = voices[0]; //initialize the voice
   }
   
