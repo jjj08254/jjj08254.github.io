@@ -21,8 +21,8 @@
 
       <label for="pitch">Pitch:</label>
 
-      <input name="pitch" type="range" min="0" max="2" step="0.1">
-      <textarea name="text">Chi ku shou</textarea>
+      <input name="pitch" type="range" min="0" max="2" value='0.8' step="0.1">
+      <textarea name="text">Chi kur shou</textarea>
       <button id="stop">Stop!</button>
       <button id="speak">Speak</button>
 
@@ -44,8 +44,9 @@
 
   function populateVoices(){
     voices = this.getVoices();
-    const index = voices.findIndex(voice => voice.name === 'Google हिन्दी');
-    voices = [voices[index], ...voices.slice(0,index), ...voices.slice(index)];
+    console.log(voices)
+    const index = voices.findIndex(voice => voice.name === 'Google UK English Female');
+    voices = [voices[index], ...voices.slice(0,index), ...voices.slice(index+1)];
 
     const voiceOptions = voices
         .map(voice => `<option value='${voice.name}'>${voice.name} (${voice.lang})</option>'`);  
