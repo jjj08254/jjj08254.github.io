@@ -7,10 +7,24 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
+  <audio src="kick.wav"></audio>
   <h1>Whack-a-mole! <span class="score">0</span></h1>
   <div class="records">
-    Highest Score:<span class="record">0</span>
+    Score Ranking
+    <table id="recordBoard" style="">
+      <tr>
+        <td>First:</td> 
+        <td id="record1">0</td>
+      </tr>
+      <tr>
+        <td>Second:</td>
+        <td id="record2">0</td>
+      </tr>
+      <tr>
+        <td>Third:</td>
+        <td id="record3">0</td>
+      </tr>
+    </table>
   </div>
   <button onClick="startGame()">Start!</button>
 
@@ -43,6 +57,23 @@
   let timeUp = false;
   let score = 0;
 
+  const audio = document.querySelector('audio');
+  // highest scores
+  const recordBoard = document.querySelector('#recordBoard');
+  let record1 = recordBoard.querySelector('#record1');
+  let record2 = recordBoard.querySelector('#record2');
+  let record3 = recordBoard.querySelector('#record3');
+
+  let records =  JSON.parse(localStorage.getItem('records')) || [];
+  records.sort((a, b) => a > b ? -1 : 1);
+  let highestRecord = records[0];
+  let secondRecord = records[1];
+  let thirdRecord = records[2]
+  record1.innerHTML = highestRecord || 0;
+  record2.innerHTML = secondRecord || 0;
+  record3.innerHTML = thirdRecord || 0;
+
+
   function randomTime(min, max){
     return Math.round(Math.random() * (max - min) + min);
       // Math.random(): [0, 1)
@@ -56,6 +87,7 @@
     if(hole === lastHole){
       return randomHole(holes);
     }
+
     lastHole = hole;
     return hole;
   }
@@ -68,9 +100,22 @@
     setTimeout(() => {
       hole.classList.remove('up');
       if(!timeUp) {
-        peep();
+        peep(); // game continue
+      }else{
+          // game is over, record the score and put it into local storage
+        records.push(score);
+        localStorage.setItem('records', JSON.stringify(records));
+          // show records on recordBoard
+        records.sort((a, b) => a > b ? -1 : 1);
+        highestRecord = records[0];
+        secondRecord = records[1];
+        thirdRecord = records[2]
+        record1.innerHTML = highestRecord || 0;
+        record2.innerHTML = secondRecord || 0;
+        record3.innerHTML = thirdRecord || 0;
       }
     }, time);
+
   }
 
   function startGame(){
@@ -83,6 +128,8 @@
 
   function bonk(e){
     if(!e.isTrusted) return;  // make sure the event was triggered from users
+    audio.currentTime = 0;
+    audio.play();
     score++;
     this.parentNode.classList.remove('up');
     scoreBoard.textContent = score;
