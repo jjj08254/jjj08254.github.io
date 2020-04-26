@@ -90,6 +90,9 @@ canvas.addEventListener('animationend', () => {
   console.log('removed');
 });
 
+window.addEventListener('click', (e) => {
+  e.preventDefault();
+});
 controlButtons.forEach(controlButton =>
   controlButton.addEventListener('click', handleControl)
 );
