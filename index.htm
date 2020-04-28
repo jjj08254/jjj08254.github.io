@@ -79,6 +79,21 @@
 	}
 
 	</style>
+
+	<style>
+	.turt {
+		position: absolute; top: 0; left: 0;
+		--x: 0px;
+		--y: 0px;
+		--rotateX: 0;
+		--rotate: 0;
+		transform: translate(var(--x), var(--y)) rotateY(var(--rotateX))
+		rotate(var(--rotate));
+
+		transition: transform 0.2s;
+	}
+
+	</style>
 </head>
 <body onload="init()">
 	<div class="title">Welcome to JOJO Website</div>
@@ -101,5 +116,53 @@
 			<div><a href="Mywork.htm">我的作品</a></div>
 		</div>
 	</div>
+
+	<img width="200" src="./turtle.png" alt="Turt" class="turt" />
+
+	<script>
+		const turtle = document.querySelector(".turt");
+		let x = 0;
+		let y = 0;
+		const speed = 30;
+		let flipped = false;
+		let rotate = 0;
+
+		function handleKeyDwon(e) {
+			// if not an arrow key, we don't care
+			if (!e.key.includes("Arrow")) return;
+
+			switch (e.key) {
+			case "ArrowUp":
+				y -= 1;
+				rotate = -90;
+				break;
+			case "ArrowDown":
+				y += 1;
+				rotate = 90;
+				break;
+			case "ArrowLeft":
+				x -= 1;
+				flipped = true;
+				rotate = 0;
+				break;
+			case "ArrowRight":
+				x += 1;
+				flipped = false;
+				rotate = 0;
+				break;
+			default:
+				console.log("That is not a valid move");
+				break;
+			}
+			// prettier-ignore
+			turtle.setAttribute('style',`
+			--rotateX: ${flipped ? '180deg' : '0deg'};
+			--x: ${x * speed}px;
+			--y: ${y * speed}px;
+			--rotate: ${rotate}deg;
+			`);
+		}
+		window.addEventListener("keydown", handleKeyDwon);
+	</script>
 </body>
 </html>
