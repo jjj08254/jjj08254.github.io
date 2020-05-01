@@ -1,3 +1,4 @@
+const wrap = document.querySelector('.wrap');
 const video = document.querySelector('.webcam');
 const canvas = document.querySelector('.video');
 const ctx = canvas.getContext('2d');
@@ -100,3 +101,7 @@ function censor(face) {
 }
 
 populateVideo().then(detect);
+wrap.addEventListener('click',(e) => {
+  alert('Check chrome://flags/ and see if "Experimental Web Platform features" is on')
+  e.stopPropagation();
+}, {once: true});
