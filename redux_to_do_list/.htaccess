@@ -1,5 +1,5 @@
 RewriteEngine On
-RewriteBase /y/directory/
+RewriteBase /redux_to_do_list/
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule (.*) ./ [QSA,L]
